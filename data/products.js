@@ -10,8 +10,13 @@
 //
 // Field shape:
 //   id, slug, featured, name, tagline, shortDescription, category, status,
-//   accentColor, problem, solution, features[{title, description}],
-//   technologies[], github, live, statusNote, roadmap[], screenshots[]
+//   accentColor, tags[], year, relatedProducts[]?, problem, solution,
+//   features[{title, description}], technologies[], github, live, statusNote,
+//   roadmap[], screenshots[]
+//
+// `tags` and `year` power dynamic collections and discovery; `relatedProducts`
+// (optional slugs) lets a product pin its own related picks. All collection and
+// recommendation logic derives from these fields — nothing is hardcoded.
 //
 // `featured: true` products lead the homepage's curated first screen; every
 // product (featured or not) appears in the complete-workspace section below it.
@@ -29,6 +34,9 @@ export const products = [
     category: "Developer Tools",
     status: "Experiment",
     accentColor: "#22c55e",
+    tags: ["real-time", "multiplayer", "competitive", "websockets", "open-source"],
+    year: 2026,
+    relatedProducts: ["skribbl"],
     problem:
       "Practicing algorithms alone is quiet and unmotivating. Most judges are solitary — you grind problems in isolation with no opponent, no clock, and no reason to come back tomorrow. The competitive energy that makes coding stick is missing from everyday practice.",
     solution:
@@ -95,6 +103,8 @@ export const products = [
     category: "Travel",
     status: "Live",
     accentColor: "#2dd4bf",
+    tags: ["community", "maps", "social", "location"],
+    year: 2025,
     problem:
       "The best places rarely make it onto mainstream maps. Popular apps funnel everyone toward the same crowded, highly-rated spots, while the quiet corners locals actually love stay invisible to visitors.",
     solution:
@@ -144,6 +154,8 @@ export const products = [
     category: "Productivity",
     status: "Live",
     accentColor: "#f5b60a",
+    tags: ["ai-powered", "writing", "open-source", "self-hostable"],
+    year: 2024,
     problem:
       "Note apps either get in your way with clutter or leave all the organizing to you. You jot a quick thought, then spend energy naming it, tagging it, and later scrolling endlessly to find it again.",
     solution:
@@ -207,6 +219,9 @@ export const products = [
     category: "Games",
     status: "Live",
     accentColor: "#7c6cff",
+    tags: ["real-time", "multiplayer", "canvas", "social", "party"],
+    year: 2024,
+    relatedProducts: ["code-arena"],
     problem:
       "Playing games with friends online usually means downloads, accounts on someone else's platform, or ads between every round. A quick, shared drawing game should be as simple as sending a room code.",
     solution:
@@ -271,6 +286,8 @@ export const products = [
     category: "Politics",
     status: "Building",
     accentColor: "#fb7185",
+    tags: ["civic-tech", "maps", "social", "india"],
+    year: 2025,
     problem:
       "Most people can't name the leaders who represent them, let alone recall what those leaders promised. Civic feedback is scattered across news and social media, with no simple, immediate way to say 'I approve' or 'I don't.'",
     solution:
@@ -325,7 +342,7 @@ export const products = [
   {
     id: 6,
     slug: "aaraam-calling-agent",
-    featured: false,
+    featured: true,
     name: "Aaraam Calling Agent",
     tagline: "Say it once — Aaraam makes the calls for you.",
     shortDescription:
@@ -333,6 +350,8 @@ export const products = [
     category: "AI",
     status: "Building",
     accentColor: "#38bdf8",
+    tags: ["ai-powered", "voice", "automation", "telephony"],
+    year: 2026,
     problem:
       "Running a household means making the same calls over and over — one person about groceries, another about a pickup, a third in their own language. It's repetitive, easy to forget, and every call has to be placed by hand.",
     solution:

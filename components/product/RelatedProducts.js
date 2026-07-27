@@ -1,13 +1,12 @@
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
+import { getRelatedProducts } from "@/lib/discovery";
 
-// Recommend other Launchpad products — same category first, then fill from the
-// rest — to reinforce that this is an ecosystem, not a pile of unrelated repos.
+// Related products ranked by real relationships — shared tags (use cases),
+// shared technologies, same category, and the author's own picks — so the
+// ecosystem feels connected rather than random. See lib/discovery.js.
 export default function RelatedProducts({ current }) {
-  const others = products.filter((p) => p.slug !== current.slug);
-  const sameCategory = others.filter((p) => p.category === current.category);
-  const rest = others.filter((p) => p.category !== current.category);
-  const related = [...sameCategory, ...rest].slice(0, 3);
+  const related = getRelatedProducts(current, 3);
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

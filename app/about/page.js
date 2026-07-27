@@ -3,7 +3,14 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 // Placeholder About page.
 export const metadata = {
-  title: "About — Launchpad",
+  title: "About",
+  description: "About Launchpad and the person behind it.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About — Launchpad",
+    description: "About Launchpad and the person behind it.",
+    url: "/about",
+  },
 };
 
 export default function AboutPage() {

@@ -50,39 +50,30 @@ export default function ProductHero({ product, index = 0 }) {
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
+              {/* Resilient to any combination of live / github being absent. */}
               {product.live ? (
-                <>
-                  <Button href={product.live} size="lg" target="_blank" rel="noopener noreferrer">
-                    Launch product
-                    <ExternalLink size={16} />
-                  </Button>
-                  <Button
-                    href={product.github}
-                    variant="secondary"
-                    size="lg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github size={16} />
-                    View source
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button
-                    href={product.github}
-                    size="lg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github size={16} />
-                    View source
-                  </Button>
-                  <span className="text-sm text-fg-faint">
-                    No public demo yet
-                  </span>
-                </>
-              )}
+                <Button href={product.live} size="lg" target="_blank" rel="noopener noreferrer">
+                  Launch product
+                  <ExternalLink size={16} />
+                </Button>
+              ) : null}
+              {product.github ? (
+                <Button
+                  href={product.github}
+                  variant={product.live ? "secondary" : "primary"}
+                  size="lg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github size={16} />
+                  View source
+                </Button>
+              ) : null}
+              {!product.live ? (
+                <span className="text-sm text-fg-faint">
+                  {product.github ? "No public demo yet" : "Links coming soon"}
+                </span>
+              ) : null}
               <FavoriteButton slug={product.slug} variant="inline" size="lg" />
             </div>
           </div>

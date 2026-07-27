@@ -1,13 +1,17 @@
+"use client";
+
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Tag from "@/components/ui/Tag";
 import { getCategories } from "@/data/products";
+import { useCollections } from "@/components/collections/CollectionsContext";
+import { categoryCollectionId } from "@/lib/collections";
 
-// Horizontal category pills, derived from the product data so a new category
-// appears automatically. No filtering logic yet — "All" shows active as a
-// visual default for the future filtering phase.
+// Category pills, derived from the data. Selecting one opens the collections
+// browser to that category — revealing its products in place, no navigation.
 export default function CategoryBar() {
   const categories = getCategories();
+  const { openCollections } = useCollections();
 
   return (
     <section className="py-6">
@@ -15,7 +19,13 @@ export default function CategoryBar() {
         <SectionHeading eyebrow="Browse" title="Categories" />
         <div className="mt-6 flex flex-wrap gap-2.5">
           {categories.map((category, index) => (
-            <Tag key={category} active={index === 0}>
+            <Tag
+              key={category}
+              active={index === 0}
+              onClick={() =>
+                openCollections(category === "All" ? null : categoryCollectionId(category))
+              }
+            >
               {category}
             </Tag>
           ))}

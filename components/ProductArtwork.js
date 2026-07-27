@@ -207,6 +207,7 @@ export default function ProductArtwork({ product, index = 0, className = "" }) {
 
   return (
     <div
+      aria-hidden="true"
       className={`relative min-h-[132px] flex-1 overflow-hidden rounded-xl border border-hairline bg-surface-2 ${className}`}
       style={{ color }}
     >

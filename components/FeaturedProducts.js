@@ -4,8 +4,13 @@ import ProductCard from "@/components/ProductCard";
 import { getFeaturedProducts } from "@/data/products";
 
 // First screen — the curated products every visitor should discover first.
-// One hero-sized card leads, the rest stack beside it: focused and premium.
-const featuredSpans = ["lg:col-span-2 lg:row-span-2", "", ""];
+// One hero-sized card leads, the rest fill beside/below it — a layout that
+// stays balanced whether there are three or four featured products.
+function featuredSpan(index, total) {
+  if (index === 0) return "lg:col-span-2 lg:row-span-2"; // hero
+  if (total >= 4 && index === 3) return "lg:col-span-3"; // full-width closer
+  return "";
+}
 
 export default function FeaturedProducts() {
   const featured = getFeaturedProducts();
@@ -24,7 +29,7 @@ export default function FeaturedProducts() {
               key={product.id}
               product={product}
               index={index}
-              className={featuredSpans[index % featuredSpans.length]}
+              className={featuredSpan(index, featured.length)}
             />
           ))}
         </div>

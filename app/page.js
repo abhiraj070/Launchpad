@@ -6,6 +6,10 @@ import CategoryBar from "@/components/CategoryBar";
 import Timeline from "@/components/Timeline";
 import BuilderSection from "@/components/BuilderSection";
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 // Homepage. Two consecutive experiences: a curated Featured screen ("what are
 // the best products to explore?") that flows into the complete workspace
 // ("here's everything I've built"). The personalization Workspace sits up top

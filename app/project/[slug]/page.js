@@ -18,10 +18,27 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
-  if (!product) return {};
+  if (!product) {
+    return { title: "Product not found", robots: { index: false, follow: false } };
+  }
+  const url = `/project/${product.slug}`;
+  const description = product.shortDescription || product.tagline;
   return {
-    title: `${product.name} — Launchpad`,
-    description: product.tagline,
+    title: product.name,
+    description,
+    keywords: [product.name, product.category, ...(product.tags || [])],
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title: `${product.name} — Launchpad`,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} — Launchpad`,
+      description,
+    },
   };
 }
 

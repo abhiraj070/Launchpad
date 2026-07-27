@@ -6,6 +6,7 @@ import { Search, LayoutGrid, Sun, Github, Menu, Rocket } from "lucide-react";
 import Container from "@/components/ui/Container";
 import IconButton from "@/components/ui/IconButton";
 import { useCommandPalette } from "@/components/command/CommandContext";
+import { useCollections } from "@/components/collections/CollectionsContext";
 
 // Floating glass toolbar. Fixed and always visible; shrinks slightly once the
 // page is scrolled so it reads like an OS toolbar rather than a website header.
@@ -14,6 +15,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [modKey, setModKey] = useState("⌘");
   const { setOpen } = useCommandPalette();
+  const { openCollections } = useCollections();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -69,17 +71,25 @@ export default function Navbar() {
             </button>
             <button
               type="button"
+              onClick={() => openCollections()}
               className="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-fg-muted transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-[0.98] active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
               <LayoutGrid size={15} />
-              <span>Categories</span>
+              <span>Collections</span>
             </button>
           </div>
 
-          {/* Right: search (mobile) + theme + github + menu */}
+          {/* Right: search + collections (mobile) + theme + github + menu */}
           <div className="flex items-center gap-1">
             <IconButton label="Search products" onClick={openPalette} className="md:hidden">
               <Search size={16} />
+            </IconButton>
+            <IconButton
+              label="Browse collections"
+              onClick={() => openCollections()}
+              className="md:hidden"
+            >
+              <LayoutGrid size={16} />
             </IconButton>
             <span className="mr-1 hidden h-5 w-px bg-hairline sm:block" />
             <IconButton label="Toggle theme">
