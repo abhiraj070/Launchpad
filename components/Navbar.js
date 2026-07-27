@@ -1,61 +1,76 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Search, LayoutGrid, Sun, Github, Menu } from "lucide-react";
+import { Search, LayoutGrid, Sun, Github, Menu, Rocket } from "lucide-react";
+import Container from "@/components/ui/Container";
+import IconButton from "@/components/ui/IconButton";
 
-// Sticky floating navigation. Buttons are placeholders — no functionality yet.
+// Floating glass toolbar. Stays fixed and visible; shrinks slightly once the
+// page is scrolled so it reads like an OS toolbar. Buttons are placeholders.
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/90 backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        {/* Left: temporary text logo */}
-        <div className="flex items-center">
-          <Link href="/" className="text-lg font-semibold tracking-tight">
-            Product Hub
+    <div className="fixed inset-x-0 top-3 z-50 sm:top-4">
+      <Container>
+        <nav
+          className={
+            "glass flex items-center justify-between gap-3 rounded-2xl shadow-glass " +
+            "transition-all duration-300 ease-premium " +
+            (scrolled ? "px-3 py-1.5 sm:px-4" : "px-4 py-2.5 sm:px-5")
+          }
+        >
+          {/* Left: logo */}
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-semibold tracking-tight text-fg"
+          >
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-[#0a0a0b]">
+              <Rocket size={16} />
+            </span>
+            <span className="text-[15px]">Launchpad</span>
           </Link>
-        </div>
 
-        {/* Center: Search + Categories */}
-        <div className="hidden items-center gap-2 sm:flex">
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm text-neutral-600"
-          >
-            <Search size={16} />
-            <span>Search</span>
-          </button>
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm text-neutral-600"
-          >
-            <LayoutGrid size={16} />
-            <span>Categories</span>
-          </button>
-        </div>
+          {/* Center: Search + Categories */}
+          <div className="hidden items-center gap-1 md:flex">
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-fg-muted transition-colors duration-200 hover:bg-surface-2 hover:text-fg"
+            >
+              <Search size={15} />
+              <span>Search</span>
+            </button>
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-fg-muted transition-colors duration-200 hover:bg-surface-2 hover:text-fg"
+            >
+              <LayoutGrid size={15} />
+              <span>Categories</span>
+            </button>
+          </div>
 
-        {/* Right: Theme + GitHub + Menu */}
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            aria-label="Toggle theme"
-            className="rounded-lg border border-neutral-200 p-1.5 text-neutral-600"
-          >
-            <Sun size={16} />
-          </button>
-          <button
-            type="button"
-            aria-label="GitHub"
-            className="rounded-lg border border-neutral-200 p-1.5 text-neutral-600"
-          >
-            <Github size={16} />
-          </button>
-          <button
-            type="button"
-            aria-label="Menu"
-            className="rounded-lg border border-neutral-200 p-1.5 text-neutral-600"
-          >
-            <Menu size={16} />
-          </button>
-        </div>
-      </nav>
-    </header>
+          {/* Right: Theme + GitHub + Menu */}
+          <div className="flex items-center gap-1">
+            <IconButton label="Toggle theme">
+              <Sun size={16} />
+            </IconButton>
+            <IconButton label="GitHub" className="hidden sm:inline-flex">
+              <Github size={16} />
+            </IconButton>
+            <IconButton label="Menu">
+              <Menu size={16} />
+            </IconButton>
+          </div>
+        </nav>
+      </Container>
+    </div>
   );
 }

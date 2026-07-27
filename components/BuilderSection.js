@@ -1,4 +1,8 @@
-// "Behind the Builder" — placeholder subsections only.
+import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
+
+// "Behind the Builder" — intentionally understated. The products lead; this is
+// context, not a resume. Placeholder subsections only.
 const subsections = [
   {
     title: "Current Focus",
@@ -24,19 +28,23 @@ const subsections = [
 
 export default function BuilderSection() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12">
-      <h2 className="mb-6 text-2xl font-bold tracking-tight">Behind the Builder</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {subsections.map((subsection) => (
-          <div
-            key={subsection.title}
-            className="rounded-xl border border-neutral-200 bg-white p-5 shadow-sm"
-          >
-            <h3 className="text-lg font-semibold">{subsection.title}</h3>
-            <p className="mt-2 text-sm text-neutral-600">{subsection.body}</p>
-          </div>
-        ))}
-      </div>
+    <section className="py-14 sm:py-16">
+      <Container>
+        <SectionHeading eyebrow="Context" title="Behind the Builder" />
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {subsections.map((subsection) => (
+            <div
+              key={subsection.title}
+              className="rounded-2xl border border-hairline bg-surface p-5 shadow-soft"
+            >
+              <h3 className="text-sm font-semibold text-fg">{subsection.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+                {subsection.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Container>
     </section>
   );
 }

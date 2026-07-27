@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Container from "@/components/ui/Container";
 import ProjectHero from "@/components/ProjectHero";
 import ProjectSection from "@/components/ProjectSection";
 import ProductCard from "@/components/ProductCard";
@@ -22,7 +23,8 @@ const sectionTitles = [
 ];
 
 export default function ProjectPage({ params }) {
-  const project = getProjectBySlug(params.slug);
+  const index = projects.findIndex((item) => item.slug === params.slug);
+  const project = index >= 0 ? projects[index] : null;
 
   if (!project) {
     notFound();
@@ -31,20 +33,31 @@ export default function ProjectPage({ params }) {
   const related = projects.filter((item) => item.slug !== project.slug).slice(0, 3);
 
   return (
-    <article className="pb-12">
-      <ProjectHero project={project} />
+    <article className="pb-16">
+      <ProjectHero project={project} index={index} />
 
-      {sectionTitles.map((title) => (
-        <ProjectSection key={title} title={title} />
-      ))}
+      <div className="mt-6">
+        {sectionTitles.map((title) => (
+          <ProjectSection key={title} title={title} />
+        ))}
+      </div>
 
-      <ProjectSection title="Related Products">
-        <div className="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {related.map((item) => (
-            <ProductCard key={item.id} project={item} />
-          ))}
-        </div>
-      </ProjectSection>
+      <section className="border-t border-hairline pt-12">
+        <Container>
+          <h2 className="text-xl font-semibold tracking-tight text-fg">
+            Related products
+          </h2>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((item) => (
+              <ProductCard
+                key={item.id}
+                project={item}
+                index={projects.findIndex((p) => p.id === item.id)}
+              />
+            ))}
+          </div>
+        </Container>
+      </section>
     </article>
   );
 }

@@ -1,25 +1,34 @@
+import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { timeline } from "@/data/timeline";
 
 // Vertical timeline grouped by year. Placeholder content only.
 export default function Timeline() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12">
-      <h2 className="mb-6 text-2xl font-bold tracking-tight">Timeline</h2>
-      <ol className="relative border-l border-neutral-200 pl-6">
-        {timeline.map((entry) => (
-          <li key={entry.year} className="mb-8 last:mb-0">
-            <span className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-neutral-300 bg-white" />
-            <h3 className="text-lg font-semibold">{entry.year}</h3>
-            <ul className="mt-2 space-y-1">
-              {entry.items.map((item) => (
-                <li key={item} className="text-sm text-neutral-600">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ol>
+    <section className="py-14 sm:py-16">
+      <Container>
+        <SectionHeading eyebrow="History" title="Timeline" />
+        <ol className="mt-8 space-y-8 border-l border-hairline pl-6">
+          {timeline.map((entry) => (
+            <li key={entry.year} className="relative">
+              <span className="absolute -left-[1.6rem] top-1.5 flex h-3 w-3 items-center justify-center">
+                <span className="h-2 w-2 rounded-full bg-accent ring-4 ring-accent-soft" />
+              </span>
+              <p className="font-mono text-sm text-fg-faint">{entry.year}</p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {entry.items.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-lg border border-hairline bg-surface px-3 py-1.5 text-sm text-fg"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+      </Container>
     </section>
   );
 }

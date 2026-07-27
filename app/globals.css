@@ -2,12 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Launchpad design tokens.
+ * Dark mode is the default and only theme this phase; every value lives here as
+ * a CSS variable so a `[data-theme="light"]` block can override it in a later
+ * phase without touching a single component.
+ */
+:root,
+[data-theme="dark"] {
+  /* Surfaces — dark charcoal canvas rising to slightly lighter card surfaces */
+  --canvas: #0a0a0b;
+  --canvas-subtle: #0e0e10;
+  --surface: #151517;
+  --surface-2: #1b1b1e;
+  --surface-hover: #212125;
+
+  /* Borders — very subtle hairlines */
+  --hairline: rgba(255, 255, 255, 0.07);
+  --hairline-strong: rgba(255, 255, 255, 0.12);
+
+  /* Text — high contrast primary, calmer muted + faint tiers */
+  --fg: #f4f4f5;
+  --fg-muted: #a1a1aa;
+  --fg-faint: #6b6b74;
+
+  /* Accent — orange, used sparingly and meaningfully */
+  --accent: #ff6b35;
+  --accent-hover: #ff8355;
+  --accent-soft: rgba(255, 107, 53, 0.14);
+
+  /* Semantic status colors */
+  --live: #34d399;
+  --building: #fbbf24;
+  --experiment: #a78bfa;
+
+  color-scheme: dark;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
+@layer base {
+  * {
+    border-color: var(--hairline);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--fg);
+    /* Barely-there dot grid so the canvas is never completely flat. */
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+    background-position: -1px -1px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--fg);
+  }
+}
+
+@layer components {
+  /*
+   * Glass surface — reserved for floating chrome (navbar, panels, dialogs).
+   * Deliberately NOT applied to product cards.
+   */
+  .glass {
+    background-color: color-mix(in srgb, var(--surface) 62%, transparent);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid var(--hairline-strong);
+  }
+
+  /* Warm ambient glow used behind the hero for layered depth. */
+  .ambient-glow {
+    background: radial-gradient(
+      60% 55% at 50% 0%,
+      rgba(255, 107, 53, 0.12),
+      transparent 70%
+    );
+  }
 }
