@@ -5,8 +5,9 @@ export default function IconButton({ label, className = "", children, ...props }
       type="button"
       aria-label={label}
       className={
-        "inline-flex h-9 w-9 items-center justify-center rounded-lg text-fg-muted " +
+        "inline-flex h-9 w-9 items-center justify-center rounded-lg text-fg-muted cursor-pointer " +
         "transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg " +
+        "active:scale-90 active:duration-75 " +
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 " +
         `focus-visible:ring-offset-2 focus-visible:ring-offset-canvas ${className}`
       }

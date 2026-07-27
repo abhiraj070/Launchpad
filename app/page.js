@@ -1,15 +1,22 @@
 import Hero from "@/components/Hero";
-import ProductGrid from "@/components/ProductGrid";
+import Workspace from "@/components/workspace/Workspace";
+import FeaturedProducts from "@/components/FeaturedProducts";
+import AllProjects from "@/components/AllProjects";
 import CategoryBar from "@/components/CategoryBar";
 import Timeline from "@/components/Timeline";
 import BuilderSection from "@/components/BuilderSection";
 
-// Homepage: sections in the order defined by the Phase 1 spec.
+// Homepage. Two consecutive experiences: a curated Featured screen ("what are
+// the best products to explore?") that flows into the complete workspace
+// ("here's everything I've built"). The personalization Workspace sits up top
+// for returning visitors and renders nothing for first-timers.
 export default function Home() {
   return (
     <>
       <Hero />
-      <ProductGrid />
+      <Workspace />
+      <FeaturedProducts />
+      <AllProjects />
       <CategoryBar />
       <Timeline />
       <BuilderSection />

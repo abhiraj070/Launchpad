@@ -1,16 +1,17 @@
-// Placeholder timeline data grouped by year.
+// Placeholder timeline grouped by year, referencing real products so the
+// homepage stays coherent with the collection. Dates are illustrative.
 
 export const timeline = [
   {
     year: "2024",
-    items: ["Calculator"],
+    items: ["NoteAI", "Skribbl.io"],
   },
   {
     year: "2025",
-    items: ["Hidden Gems"],
+    items: ["Hidden Gems", "myNeta"],
   },
   {
     year: "2026",
-    items: ["Slap Your Leader", "News Graph"],
+    items: ["CodeArena", "Aaraam Calling Agent"],
   },
 ];

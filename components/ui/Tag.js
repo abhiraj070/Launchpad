@@ -5,7 +5,8 @@ export default function Tag({ active = false, className = "", children, ...props
     <button
       type="button"
       className={
-        "rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-200 ease-premium " +
+        "cursor-pointer rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-200 ease-premium " +
+        "active:scale-95 active:duration-75 " +
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 " +
         "focus-visible:ring-offset-2 focus-visible:ring-offset-canvas " +
         (active

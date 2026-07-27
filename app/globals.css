@@ -89,3 +89,134 @@
     );
   }
 }
+
+/*
+ * Artwork micro-interactions — thematic, subtle, and hover-scoped so nothing
+ * animates for its own sake. The `group` is the product card.
+ */
+.group:hover .route-line {
+  animation: route-flow 1.4s linear infinite;
+}
+
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+
+.group:hover .cursor-blink {
+  animation: cursor-blink 1s steps(2, start) infinite;
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/*
+ * Page transition — a single, lightweight fade+lift on each navigation.
+ * Applied by app/template.js, which remounts on route change. The persistent
+ * chrome (navbar/footer) lives in the layout and never re-animates.
+ */
+.page-enter {
+  animation: page-enter 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skeleton shimmer — only ever shown on loading placeholders. */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.04),
+    transparent
+  );
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/*
+ * Command palette — an OS-style overlay, not a modal. cmdk renders the overlay
+ * and content wrappers; we position + animate them here and style the internals.
+ */
+.lp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fade-in 160ms ease both;
+}
+
+.lp-content {
+  position: fixed;
+  top: 14vh;
+  left: 50%;
+  z-index: 101;
+  width: min(640px, calc(100vw - 2rem));
+  transform: translateX(-50%);
+  animation: palette-in 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes palette-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+.lp-palette [cmdk-group-heading] {
+  padding: 0.5rem 0.625rem 0.25rem;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+/* Reveal the ↵ affordance on the highlighted row. */
+.lp-palette [cmdk-item][aria-selected="true"] .cmd-enter {
+  opacity: 1;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

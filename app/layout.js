@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CommandProvider from "@/components/command/CommandProvider";
 
 export const metadata = {
   title: "Launchpad — Discover & launch products",
@@ -23,11 +24,13 @@ export default function RootLayout({ children }) {
           aria-hidden="true"
           className="ambient-glow pointer-events-none fixed inset-x-0 top-0 z-0 h-[540px]"
         />
-        <div className="relative z-10">
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <CommandProvider>
+          <div className="relative z-10">
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </CommandProvider>
       </body>
     </html>
   );

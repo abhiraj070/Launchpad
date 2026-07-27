@@ -1,11 +1,14 @@
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Tag from "@/components/ui/Tag";
-import { categories } from "@/data/categories";
+import { getCategories } from "@/data/products";
 
-// Horizontal category pills. No filtering logic yet — "All" is shown active as
-// a visual default for the future filtering phase.
+// Horizontal category pills, derived from the product data so a new category
+// appears automatically. No filtering logic yet — "All" shows active as a
+// visual default for the future filtering phase.
 export default function CategoryBar() {
+  const categories = getCategories();
+
   return (
     <section className="py-6">
       <Container>
