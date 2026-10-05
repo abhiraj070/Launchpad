@@ -116,6 +116,20 @@
 }
 
 /*
+ * System architecture data-flow animation — subtle, rhythmic transfer of signals.
+ */
+.system-flow {
+  stroke-dasharray: 4 6;
+  animation: system-flow-loop 2.2s linear infinite;
+}
+
+@keyframes system-flow-loop {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+/*
  * Page transition — a single, lightweight fade+lift on each navigation.
  * Applied by app/template.js, which remounts on route change. The persistent
  * chrome (navbar/footer) lives in the layout and never re-animates.
