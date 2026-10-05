@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Search, Sun, Moon, Github, Rocket, User, FolderGit2 } from "lucide-react";
+import { Search, Sun, Moon, Github, Rocket, User, FolderGit2, Cpu } from "lucide-react";
 import Container from "@/components/ui/Container";
 import IconButton from "@/components/ui/IconButton";
 import { useCommandPalette } from "@/components/command/CommandContext";
@@ -112,6 +112,13 @@ export default function Navbar() {
               <FolderGit2 size={15} />
               <span>Projects</span>
             </Link>
+            <Link
+              href="/#tech-stack"
+              className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-fg-muted transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-[0.98] active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            >
+              <Cpu size={15} />
+              <span>Tech Stack</span>
+            </Link>
           </div>
 
           {/* Right: search + about me (mobile) + projects (mobile) + theme + github */}
@@ -132,6 +139,13 @@ export default function Navbar() {
               className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-fg-muted cursor-pointer transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-90 active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas md:hidden"
             >
               <FolderGit2 size={16} />
+            </Link>
+            <Link
+              href="/#tech-stack"
+              aria-label="Tech Stack"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-fg-muted cursor-pointer transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-90 active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas md:hidden"
+            >
+              <Cpu size={16} />
             </Link>
             <span className="mr-1 hidden h-5 w-px bg-hairline sm:block" />
             <IconButton
