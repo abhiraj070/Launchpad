@@ -1,28 +1,22 @@
-import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
+import AboutSection from "@/components/AboutSection";
 
-// Placeholder About page.
 export const metadata = {
-  title: "About",
-  description: "About Launchpad and the person behind it.",
+  title: "About — Abhiraj Sharma",
+  description:
+    "About Abhiraj Sharma, Full-Stack AI Developer building scalable web applications and intelligent systems.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About — Launchpad",
-    description: "About Launchpad and the person behind it.",
+    title: "About — Abhiraj Sharma",
+    description:
+      "About Abhiraj Sharma, Full-Stack AI Developer building scalable web applications and intelligent systems.",
     url: "/about",
   },
 };
 
 export default function AboutPage() {
   return (
-    <section className="pb-16 pt-28 sm:pt-32">
-      <Container>
-        <SectionHeading
-          eyebrow="About"
-          title="About Launchpad"
-          subtitle="Placeholder content. This page will describe Launchpad and the person behind it in a later phase."
-        />
-      </Container>
-    </section>
+    <div className="pt-16 sm:pt-20">
+      <AboutSection />
+    </div>
   );
 }

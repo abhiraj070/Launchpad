@@ -1,29 +1,29 @@
 import Hero from "@/components/Hero";
 import Workspace from "@/components/workspace/Workspace";
+import AlayaSection from "@/components/AlayaSection";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import AllProjects from "@/components/AllProjects";
 import CategoryBar from "@/components/CategoryBar";
 import Timeline from "@/components/Timeline";
-import BuilderSection from "@/components/BuilderSection";
+import AboutSection from "@/components/AboutSection";
 
 export const metadata = {
   alternates: { canonical: "/" },
 };
 
-// Homepage. Two consecutive experiences: a curated Featured screen ("what are
-// the best products to explore?") that flows into the complete workspace
-// ("here's everything I've built"). The personalization Workspace sits up top
-// for returning visitors and renders nothing for first-timers.
+// Homepage. Features the active flagship deep-dive for Alaya, the curated
+// Featured products ("main"), and the complete workspace ("everything I've built").
 export default function Home() {
   return (
     <>
       <Hero />
       <Workspace />
+      <AlayaSection />
       <FeaturedProducts />
       <AllProjects />
       <CategoryBar />
       <Timeline />
-      <BuilderSection />
+      <AboutSection />
     </>
   );
 }

@@ -160,6 +160,7 @@ If unset, it defaults to a placeholder.
 | **NoteAI** ⭐ | Productivity | Live | [demo](https://note-ai-eta.vercel.app/) · [source](https://github.com/abhiraj070/NoteAi) |
 | **myNeta** ⭐ | Politics | Building | [source](https://github.com/abhiraj070/myNeta) |
 | **Aaraam Calling Agent** ⭐ | AI | Building | [source](https://github.com/abhiraj070/Aaraam-CallingAgent) |
+| **Alaya** ⭐ | AI | Building | [source](https://github.com/abhiraj070/alaya) |
 | **CodeArena** | Developer Tools | Experiment | [demo](https://code-arena-six-theta.vercel.app/) · [source](https://github.com/abhiraj070/CodeArena) |
 | **Skribbl.io** | Games | Live | [demo](https://skribbl-io-nine.vercel.app/) · [source](https://github.com/abhiraj070/Skribbl.io) |
 

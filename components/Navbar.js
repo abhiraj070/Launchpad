@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Search, LayoutGrid, Sun, Github, Menu, Rocket } from "lucide-react";
+import { Search, Sun, Github, Menu, Rocket, User } from "lucide-react";
 import Container from "@/components/ui/Container";
 import IconButton from "@/components/ui/IconButton";
 import { useCommandPalette } from "@/components/command/CommandContext";
-import { useCollections } from "@/components/collections/CollectionsContext";
 
 // Floating glass toolbar. Fixed and always visible; shrinks slightly once the
 // page is scrolled so it reads like an OS toolbar rather than a website header.
@@ -15,7 +14,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [modKey, setModKey] = useState("⌘");
   const { setOpen } = useCommandPalette();
-  const { openCollections } = useCollections();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -54,14 +52,14 @@ export default function Navbar() {
             <span className="text-[15px]">Launchpad</span>
           </Link>
 
-          {/* Center: search affordance + categories */}
+          {/* Center: search affordance + about me */}
           <div className="hidden items-center gap-1.5 md:flex">
             <button
               type="button"
               onClick={openPalette}
               aria-label="Search products"
               aria-keyshortcuts="Meta+K Control+K"
-              className="inline-flex min-w-[240px] cursor-pointer items-center gap-2 rounded-lg border border-hairline bg-surface/60 py-1.5 pl-3 pr-2 text-sm text-fg-faint transition-all duration-200 ease-premium hover:border-hairline-strong hover:text-fg-muted active:scale-[0.98] active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              className="inline-flex min-w-[200px] lg:min-w-[240px] cursor-pointer items-center gap-2 rounded-lg border border-hairline bg-surface/60 py-1.5 pl-3 pr-2 text-sm text-fg-faint transition-all duration-200 ease-premium hover:border-hairline-strong hover:text-fg-muted active:scale-[0.98] active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
               <Search size={15} />
               <span className="flex-1 text-left">Search products</span>
@@ -69,33 +67,36 @@ export default function Navbar() {
                 {modKey}K
               </kbd>
             </button>
-            <button
-              type="button"
-              onClick={() => openCollections()}
-              className="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-fg-muted transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-[0.98] active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            <Link
+              href="/#about"
+              className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-fg-muted transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-[0.98] active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
-              <LayoutGrid size={15} />
-              <span>Collections</span>
-            </button>
+              <User size={15} />
+              <span>About Me</span>
+            </Link>
           </div>
 
-          {/* Right: search + collections (mobile) + theme + github + menu */}
+          {/* Right: search + about me (mobile) + theme + github + menu */}
           <div className="flex items-center gap-1">
             <IconButton label="Search products" onClick={openPalette} className="md:hidden">
               <Search size={16} />
             </IconButton>
-            <IconButton
-              label="Browse collections"
-              onClick={() => openCollections()}
-              className="md:hidden"
+            <Link
+              href="/#about"
+              aria-label="About Me"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-fg-muted cursor-pointer transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-90 active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas md:hidden"
             >
-              <LayoutGrid size={16} />
-            </IconButton>
+              <User size={16} />
+            </Link>
             <span className="mr-1 hidden h-5 w-px bg-hairline sm:block" />
             <IconButton label="Toggle theme">
               <Sun size={16} />
             </IconButton>
-            <IconButton label="GitHub" className="hidden sm:inline-flex">
+            <IconButton
+              label="GitHub"
+              onClick={() => window.open("https://github.com/abhiraj070", "_blank", "noopener,noreferrer")}
+              className="hidden sm:inline-flex"
+            >
               <Github size={16} />
             </IconButton>
             <IconButton label="Menu">

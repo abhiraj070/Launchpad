@@ -409,6 +409,91 @@ export const products = [
     ],
     screenshots: [],
   },
+  {
+    id: 7,
+    slug: "alaya",
+    featured: true,
+    name: "Alaya",
+    tagline: "Personal knowledge & conversational retrieval API with hybrid search.",
+    shortDescription:
+      "An asynchronous memory engine that normalizes facts, creates pgvector embeddings, and answers queries via semantic, SQL, or hybrid retrieval.",
+    category: "AI",
+    status: "Building",
+    accentColor: "#818cf8",
+    tags: [
+      "rag",
+      "pgvector",
+      "fastapi",
+      "embeddings",
+      "hybrid-search",
+      "redis",
+      "websockets",
+    ],
+    year: 2026,
+    relatedProducts: ["noteai", "aaraam-calling-agent"],
+    problem:
+      "Personal knowledge—receipts, preferences, purchases, and facts—is scattered across disconnected notes and chats. Keyword search misses conceptual meaning, while basic semantic search hallucinates when asked deterministic questions like 'How much did I spend on my laptop last month?' or misses structured constraints.",
+    solution:
+      "Alaya provides an asynchronous personal knowledge memory backend. It takes free-form text or image uploads, normalizes compound statements into atomic facts with dynamic JSONB metadata and 1536-dimensional pgvector embeddings via ARQ workers, and streams answers back using intelligent query classification: choosing between vector similarity, deterministic PostgreSQL queries, or a hybrid blend of both.",
+    features: [
+      {
+        title: "Compound fact normalization",
+        description:
+          "Normalizes multi-part sentences into atomic, standalone facts and extracts dynamic structured metadata (dates, currency, entities) stored as JSONB.",
+      },
+      {
+        title: "Hybrid multi-strategy retrieval",
+        description:
+          "Intelligently classifies incoming questions to route between semantic nearest-neighbor search, deterministic PostgreSQL queries, or hybrid candidate filtering.",
+      },
+      {
+        title: "Asynchronous background workers",
+        description:
+          "Redis and ARQ workers handle vector embeddings and heavy document parsing in the background without blocking client requests.",
+      },
+      {
+        title: "Multimodal vision extraction",
+        description:
+          "Ingests images and receipts via OpenAI vision models, automatically transcribing and extracting knowledge into structured storage.",
+      },
+      {
+        title: "Real-time WebSocket notifications",
+        description:
+          "Subscribes to Redis pub/sub to push live processing status and job completion notifications directly to authenticated client sockets.",
+      },
+      {
+        title: "Per-user vector isolation",
+        description:
+          "All conversational context, chats, knowledge records, and 1536-dimensional pgvector embeddings are strictly scoped to the authenticated user.",
+      },
+    ],
+    technologies: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "ARQ",
+      "SQLAlchemy",
+      "OpenAI",
+      "WebSockets",
+      "Cloudinary",
+      "Alembic",
+      "Pydantic",
+    ],
+    github: "https://github.com/abhiraj070/alaya",
+    live: null,
+    statusNote:
+      "Under active development. Text and image ingestion, ARQ background processing, pgvector embeddings, and WebSocket notifications are implemented. Multi-format document extractors (PDF, DOCX, XLSX, PPTX) and route registrations are in progress.",
+    roadmap: [
+      "Multi-format document extraction API (PDF, DOCX, XLSX, PPTX)",
+      "Assistant context persistence and full chat session memory",
+      "Document ingestion chunking and deduplication",
+      "Docker Compose containerized local development environment",
+      "Web client interface & playground deployment",
+    ],
+    screenshots: [],
+  },
 ];
 
 export function getProductBySlug(slug) {

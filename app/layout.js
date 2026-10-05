@@ -4,7 +4,6 @@ import { GeistMono } from "geist/font/mono";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CommandProvider from "@/components/command/CommandProvider";
-import CollectionsProvider from "@/components/collections/CollectionsProvider";
 import { siteConfig, siteUrl } from "@/lib/site";
 
 export const metadata = {
@@ -71,13 +70,11 @@ export default function RootLayout({ children }) {
           className="ambient-glow pointer-events-none fixed inset-x-0 top-0 z-0 h-[540px]"
         />
         <CommandProvider>
-          <CollectionsProvider>
-            <div className="relative z-10">
-              <Navbar />
-              <main id="main">{children}</main>
-              <Footer />
-            </div>
-          </CollectionsProvider>
+          <div className="relative z-10">
+            <Navbar />
+            <main id="main">{children}</main>
+            <Footer />
+          </div>
         </CommandProvider>
       </body>
     </html>

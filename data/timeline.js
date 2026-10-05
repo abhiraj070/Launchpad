@@ -12,6 +12,6 @@ export const timeline = [
   },
   {
     year: "2026",
-    items: ["CodeArena", "Aaraam Calling Agent"],
+    items: ["CodeArena", "Aaraam Calling Agent", "Alaya"],
   },
 ];

@@ -8,7 +8,8 @@ import { getFeaturedProducts } from "@/data/products";
 // stays balanced whether there are three or four featured products.
 function featuredSpan(index, total) {
   if (index === 0) return "lg:col-span-2 lg:row-span-2"; // hero
-  if (total >= 4 && index === 3) return "lg:col-span-3"; // full-width closer
+  if (total === 4 && index === 3) return "sm:col-span-2 lg:col-span-3"; // 4-item full-width closer
+  if (total === 5 && index === 4) return "sm:col-span-2 lg:col-span-2"; // 5-item wide spotlight closer
   return "";
 }
 
