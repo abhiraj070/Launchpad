@@ -47,6 +47,20 @@ export default function Button({
   );
 
   if (href && !loading) {
+    const isExternal =
+      href.startsWith("http://") ||
+      href.startsWith("https://") ||
+      href.startsWith("mailto:") ||
+      href.startsWith("tel:");
+
+    if (isExternal) {
+      return (
+        <a href={href} className={classes} {...props}>
+          {content}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} className={classes} {...props}>
         {content}

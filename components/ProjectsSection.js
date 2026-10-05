@@ -43,7 +43,7 @@ export default function ProjectsSection() {
 
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {topProjects.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
+              <ProductCard key={`top-${product.slug}`} product={product} index={index} />
             ))}
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function ProjectsSection() {
 
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
+              <ProductCard key={`all-${product.slug}`} product={product} index={index} />
             ))}
           </div>
         </div>

@@ -6,8 +6,7 @@ import { CollectionsContext } from "@/components/collections/CollectionsContext"
 
 // The browser (Radix Dialog) is code-split and only loaded once opened.
 const CollectionsBrowser = dynamic(
-  () => import("@/components/collections/CollectionsBrowser"),
-  { ssr: false }
+  () => import("@/components/collections/CollectionsBrowser")
 );
 
 // Owns the collections-browser open state and the collection it should open to.

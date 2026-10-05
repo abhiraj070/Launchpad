@@ -248,7 +248,7 @@ export const products = [
     screenshots: [],
   },
   {
-    id: 2,
+    id: 4,
     slug: "hidden-gems",
     featured: true,
     name: "Hidden Gems",
@@ -299,7 +299,7 @@ export const products = [
     screenshots: [],
   },
   {
-    id: 3,
+    id: 5,
     slug: "noteai",
     featured: true,
     name: "NoteAI",
@@ -364,7 +364,7 @@ export const products = [
     screenshots: [],
   },
   {
-    id: 4,
+    id: 6,
     slug: "skribbl",
     featured: false,
     name: "Skribbl.io",
@@ -431,7 +431,7 @@ export const products = [
     screenshots: [],
   },
   {
-    id: 5,
+    id: 7,
     slug: "myneta",
     featured: true,
     name: "myNeta",

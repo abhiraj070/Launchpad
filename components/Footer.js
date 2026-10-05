@@ -2,8 +2,33 @@ import Link from "next/link";
 import { Rocket } from "lucide-react";
 import Container from "@/components/ui/Container";
 
-// Minimal footer. No real links required this phase.
-const links = ["GitHub", "LinkedIn", "Twitter", "Email", "Resume"];
+const links = [
+  {
+    label: "GitHub",
+    href: "https://github.com/abhiraj070",
+    external: true,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/abhiraj-sharma-6a206424b/",
+    external: true,
+  },
+  {
+    label: "Twitter",
+    href: "https://twitter.com/abhiraj070",
+    external: true,
+  },
+  {
+    label: "Email",
+    href: "mailto:iamabhirajsharma@gmail.com",
+    external: false,
+  },
+  {
+    label: "Resume",
+    href: "https://drive.google.com/file/d/1S2w0pLS4hj7IFQkux1sCIIhY3eG3bIa3/view?usp=drive_link",
+    external: true,
+  },
+];
 
 export default function Footer() {
   return (
@@ -15,7 +40,7 @@ export default function Footer() {
           </span>
           <div>
             <p className="text-sm font-semibold text-fg">Launchpad</p>
-            <p className="text-xs text-fg-faint">
+            <p className="text-xs text-fg-faint" suppressHydrationWarning>
               © {new Date().getFullYear()} — Built for launching products.
             </p>
           </div>
@@ -23,13 +48,16 @@ export default function Footer() {
 
         <ul className="flex flex-wrap gap-x-6 gap-y-2">
           {links.map((link) => (
-            <li key={link}>
-              <Link
-                href="#"
+            <li key={link.label}>
+              <a
+                href={link.href}
+                {...(link.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className="text-sm text-fg-muted transition-colors duration-200 hover:text-fg"
               >
-                {link}
-              </Link>
+                {link.label}
+              </a>
             </li>
           ))}
         </ul>

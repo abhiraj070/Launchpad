@@ -7,8 +7,7 @@ import { CommandContext } from "@/components/command/CommandContext";
 // The palette (cmdk + Radix Dialog) is code-split and only loaded once the user
 // actually opens it — keeping it out of the initial bundle.
 const CommandPalette = dynamic(
-  () => import("@/components/command/CommandPalette"),
-  { ssr: false }
+  () => import("@/components/command/CommandPalette")
 );
 
 // Owns palette open state, registers the global Cmd/Ctrl+K shortcut, and exposes

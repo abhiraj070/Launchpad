@@ -91,7 +91,10 @@ export default function Navbar() {
             >
               <Search size={15} />
               <span className="flex-1 text-left">Search products</span>
-              <kbd className="rounded border border-hairline bg-surface-2 px-1.5 py-0.5 font-mono text-[10px] text-fg-faint">
+              <kbd
+                suppressHydrationWarning
+                className="rounded border border-hairline bg-surface-2 px-1.5 py-0.5 font-mono text-[10px] text-fg-faint"
+              >
                 {modKey}K
               </kbd>
             </button>
@@ -132,18 +135,21 @@ export default function Navbar() {
             </Link>
             <span className="mr-1 hidden h-5 w-px bg-hairline sm:block" />
             <IconButton
+              suppressHydrationWarning
               label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
               onClick={toggleTheme}
             >
               {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
             </IconButton>
-            <IconButton
-              label="GitHub"
-              onClick={() => window.open("https://github.com/abhiraj070", "_blank", "noopener,noreferrer")}
-              className="hidden sm:inline-flex"
+            <a
+              href="https://github.com/abhiraj070"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="hidden sm:inline-flex h-9 w-9 items-center justify-center rounded-lg text-fg-muted cursor-pointer transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-90 active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
               <Github size={16} />
-            </IconButton>
+            </a>
           </div>
         </nav>
       </Container>
