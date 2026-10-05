@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Search, Sun, Github, Menu, Rocket, User } from "lucide-react";
+import { Search, Sun, Moon, Github, Rocket, User, FolderGit2 } from "lucide-react";
 import Container from "@/components/ui/Container";
 import IconButton from "@/components/ui/IconButton";
 import { useCommandPalette } from "@/components/command/CommandContext";
@@ -13,6 +13,7 @@ import { useCommandPalette } from "@/components/command/CommandContext";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [modKey, setModKey] = useState("⌘");
+  const [theme, setTheme] = useState("dark");
   const { setOpen } = useCommandPalette();
 
   useEffect(() => {
@@ -26,6 +27,33 @@ export default function Navbar() {
     const isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
     if (!isMac) setModKey("Ctrl");
   }, []);
+
+  // Initialize and synchronize theme state from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("theme");
+      if (saved === "light" || saved === "dark") {
+        setTheme(saved);
+        document.documentElement.setAttribute("data-theme", saved);
+      } else {
+        const initial = document.documentElement.getAttribute("data-theme") || "dark";
+        setTheme(initial);
+      }
+    } catch {
+      // Ignore storage errors in restricted contexts
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    try {
+      localStorage.setItem("theme", nextTheme);
+    } catch {
+      // Ignore
+    }
+  };
 
   const openPalette = () => setOpen(true);
 
@@ -52,14 +80,14 @@ export default function Navbar() {
             <span className="text-[15px]">Launchpad</span>
           </Link>
 
-          {/* Center: search affordance + about me */}
+          {/* Center: search affordance + about me + projects */}
           <div className="hidden items-center gap-1.5 md:flex">
             <button
               type="button"
               onClick={openPalette}
               aria-label="Search products"
               aria-keyshortcuts="Meta+K Control+K"
-              className="inline-flex min-w-[200px] lg:min-w-[240px] cursor-pointer items-center gap-2 rounded-lg border border-hairline bg-surface/60 py-1.5 pl-3 pr-2 text-sm text-fg-faint transition-all duration-200 ease-premium hover:border-hairline-strong hover:text-fg-muted active:scale-[0.98] active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+              className="inline-flex min-w-[180px] lg:min-w-[220px] cursor-pointer items-center gap-2 rounded-lg border border-hairline bg-surface/60 py-1.5 pl-3 pr-2 text-sm text-fg-faint transition-all duration-200 ease-premium hover:border-hairline-strong hover:text-fg-muted active:scale-[0.98] active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
             >
               <Search size={15} />
               <span className="flex-1 text-left">Search products</span>
@@ -74,9 +102,16 @@ export default function Navbar() {
               <User size={15} />
               <span>About Me</span>
             </Link>
+            <Link
+              href="/#projects"
+              className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-fg-muted transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-[0.98] active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+            >
+              <FolderGit2 size={15} />
+              <span>Projects</span>
+            </Link>
           </div>
 
-          {/* Right: search + about me (mobile) + theme + github + menu */}
+          {/* Right: search + about me (mobile) + projects (mobile) + theme + github */}
           <div className="flex items-center gap-1">
             <IconButton label="Search products" onClick={openPalette} className="md:hidden">
               <Search size={16} />
@@ -88,9 +123,19 @@ export default function Navbar() {
             >
               <User size={16} />
             </Link>
+            <Link
+              href="/#projects"
+              aria-label="Projects"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-fg-muted cursor-pointer transition-all duration-200 ease-premium hover:bg-surface-2 hover:text-fg active:scale-90 active:duration-75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas md:hidden"
+            >
+              <FolderGit2 size={16} />
+            </Link>
             <span className="mr-1 hidden h-5 w-px bg-hairline sm:block" />
-            <IconButton label="Toggle theme">
-              <Sun size={16} />
+            <IconButton
+              label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
             </IconButton>
             <IconButton
               label="GitHub"
@@ -98,9 +143,6 @@ export default function Navbar() {
               className="hidden sm:inline-flex"
             >
               <Github size={16} />
-            </IconButton>
-            <IconButton label="Menu">
-              <Menu size={16} />
             </IconButton>
           </div>
         </nav>

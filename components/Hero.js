@@ -35,7 +35,7 @@ export default function Hero() {
 
               {/* Current-work indicator: Alaya */}
               <a
-                href="#alaya"
+                href="#projects"
                 className="inline-flex items-center gap-2 rounded-full border border-hairline bg-surface/60 px-3 py-1 text-xs font-medium text-fg-muted backdrop-blur-sm transition-all duration-200 ease-premium hover:border-hairline-strong hover:bg-surface hover:text-fg active:scale-95"
               >
                 <span className="relative flex h-1.5 w-1.5">
@@ -74,7 +74,7 @@ export default function Hero() {
                 View GitHub
               </Button>
 
-              <Button href="#products" size="lg" variant="secondary">
+              <Button href="#projects" size="lg" variant="secondary">
                 Explore Projects
                 <ArrowDown size={16} />
               </Button>
@@ -87,7 +87,7 @@ export default function Hero() {
                 <div className="flex items-center gap-2 text-fg-muted">
                   <span className="h-1.5 w-1.5 rounded-full bg-live" />
                   <span>
-                    Ex-SWE Intern at{" "}
+                    Ex-Intern at{" "}
                     <strong className="font-semibold text-fg">Krishify</strong>
                   </span>
                   <span className="font-mono text-[11px] text-fg-faint">

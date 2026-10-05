@@ -25,8 +25,163 @@
 export const products = [
   {
     id: 1,
+    slug: "alaya",
+    featured: true,
+    name: "Alaya",
+    tagline: "Personal knowledge & conversational retrieval API with hybrid search.",
+    shortDescription:
+      "An asynchronous memory engine that normalizes facts, creates pgvector embeddings, and answers queries via semantic, SQL, or hybrid retrieval.",
+    category: "AI",
+    status: "Building",
+    accentColor: "#818cf8",
+    tags: [
+      "rag",
+      "pgvector",
+      "fastapi",
+      "embeddings",
+      "hybrid-search",
+      "redis",
+      "websockets",
+    ],
+    year: 2026,
+    relatedProducts: ["noteai", "aaraam-calling-agent"],
+    problem:
+      "Personal knowledge—receipts, preferences, purchases, and facts—is scattered across disconnected notes and chats. Keyword search misses conceptual meaning, while basic semantic search hallucinates when asked deterministic questions like 'How much did I spend on my laptop last month?' or misses structured constraints.",
+    solution:
+      "Alaya provides an asynchronous personal knowledge memory backend. It takes free-form text or image uploads, normalizes compound statements into atomic facts with dynamic JSONB metadata and 1536-dimensional pgvector embeddings via ARQ workers, and streams answers back using intelligent query classification: choosing between vector similarity, deterministic PostgreSQL queries, or a hybrid blend of both.",
+    features: [
+      {
+        title: "Compound fact normalization",
+        description:
+          "Normalizes multi-part sentences into atomic, standalone facts and extracts dynamic structured metadata (dates, currency, entities) stored as JSONB.",
+      },
+      {
+        title: "Hybrid multi-strategy retrieval",
+        description:
+          "Intelligently classifies incoming questions to route between semantic nearest-neighbor search, deterministic PostgreSQL queries, or hybrid candidate filtering.",
+      },
+      {
+        title: "Asynchronous background workers",
+        description:
+          "Redis and ARQ workers handle vector embeddings and heavy document parsing in the background without blocking client requests.",
+      },
+      {
+        title: "Multimodal vision extraction",
+        description:
+          "Ingests images and receipts via OpenAI vision models, automatically transcribing and extracting knowledge into structured storage.",
+      },
+      {
+        title: "Real-time WebSocket notifications",
+        description:
+          "Subscribes to Redis pub/sub to push live processing status and job completion notifications directly to authenticated client sockets.",
+      },
+      {
+        title: "Per-user vector isolation",
+        description:
+          "All conversational context, chats, knowledge records, and 1536-dimensional pgvector embeddings are strictly scoped to the authenticated user.",
+      },
+    ],
+    technologies: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "ARQ",
+      "SQLAlchemy",
+      "OpenAI",
+      "WebSockets",
+      "Cloudinary",
+      "Alembic",
+      "Pydantic",
+    ],
+    github: "https://github.com/abhiraj070/alaya",
+    live: null,
+    statusNote:
+      "Under active development. Text and image ingestion, ARQ background processing, pgvector embeddings, and WebSocket notifications are implemented. Multi-format document extractors (PDF, DOCX, XLSX, PPTX) and route registrations are in progress.",
+    roadmap: [
+      "Multi-format document extraction API (PDF, DOCX, XLSX, PPTX)",
+      "Assistant context persistence and full chat session memory",
+      "Document ingestion chunking and deduplication",
+      "Docker Compose containerized local development environment",
+      "Web client interface & playground deployment",
+    ],
+    screenshots: [],
+  },
+  {
+    id: 2,
+    slug: "aaraam-calling-agent",
+    featured: true,
+    name: "Aaraam Calling Agent",
+    tagline: "Say it once — Aaraam makes the calls for you.",
+    shortDescription:
+      "An AI agent that turns one instruction into real phone calls to the right people.",
+    category: "AI",
+    status: "Building",
+    accentColor: "#38bdf8",
+    tags: ["ai-powered", "voice", "automation", "telephony"],
+    year: 2026,
+    problem:
+      "Running a household means making the same calls over and over — one person about groceries, another about a pickup, a third in their own language. It's repetitive, easy to forget, and every call has to be placed by hand.",
+    solution:
+      "Aaraam listens to a single request — typed or spoken — works out who in your household it concerns, and places real phone calls that deliver the right message to each person in their preferred language. It records what they say back, transcribes it, and keeps a running history, so one sentence from you becomes several completed calls.",
+    features: [
+      {
+        title: "Text or voice input",
+        description:
+          "Describe what you need in plain language — type it or record a quick voice note.",
+      },
+      {
+        title: "Role-aware routing",
+        description:
+          "The agent decides who to call and tailors the message for each household member.",
+      },
+      {
+        title: "Natural voice calls",
+        description:
+          "Messages are spoken on a real phone call using lifelike text-to-speech.",
+      },
+      {
+        title: "Replies, recorded",
+        description:
+          "Responses are recorded, transcribed, and saved to a searchable history.",
+      },
+      {
+        title: "Speaks their language",
+        description:
+          "Each person hears the message in the language they're most comfortable with.",
+      },
+      {
+        title: "Live call status",
+        description:
+          "Watch calls progress in real time, streamed back to the app.",
+      },
+    ],
+    technologies: [
+      "Python",
+      "FastAPI",
+      "Pydantic AI",
+      "OpenAI",
+      "ElevenLabs",
+      "Twilio",
+      "Flutter",
+      "PostgreSQL",
+    ],
+    github: "https://github.com/abhiraj070/Aaraam-CallingAgent",
+    live: null,
+    statusNote:
+      "Fully implemented across an AI backend, a Flutter mobile app, and a web prototype. Runs against live Twilio, OpenAI, and ElevenLabs services, and is not yet publicly deployed.",
+    roadmap: [
+      "Public beta of the mobile app",
+      "Scheduled and recurring calls",
+      "Two-way conversational follow-ups",
+    ],
+    screenshots: [],
+  },
+  {
+    id: 3,
     slug: "code-arena",
-    featured: false,
+    featured: true,
     name: "CodeArena",
     tagline: "Where developers compete, collaborate, and build in real time.",
     shortDescription:
@@ -336,161 +491,6 @@ export const products = [
       "Expand to MPs and local representatives",
       "Track promises and commitments over time",
       "Regional language support",
-    ],
-    screenshots: [],
-  },
-  {
-    id: 6,
-    slug: "aaraam-calling-agent",
-    featured: true,
-    name: "Aaraam Calling Agent",
-    tagline: "Say it once — Aaraam makes the calls for you.",
-    shortDescription:
-      "An AI agent that turns one instruction into real phone calls to the right people.",
-    category: "AI",
-    status: "Building",
-    accentColor: "#38bdf8",
-    tags: ["ai-powered", "voice", "automation", "telephony"],
-    year: 2026,
-    problem:
-      "Running a household means making the same calls over and over — one person about groceries, another about a pickup, a third in their own language. It's repetitive, easy to forget, and every call has to be placed by hand.",
-    solution:
-      "Aaraam listens to a single request — typed or spoken — works out who in your household it concerns, and places real phone calls that deliver the right message to each person in their preferred language. It records what they say back, transcribes it, and keeps a running history, so one sentence from you becomes several completed calls.",
-    features: [
-      {
-        title: "Text or voice input",
-        description:
-          "Describe what you need in plain language — type it or record a quick voice note.",
-      },
-      {
-        title: "Role-aware routing",
-        description:
-          "The agent decides who to call and tailors the message for each household member.",
-      },
-      {
-        title: "Natural voice calls",
-        description:
-          "Messages are spoken on a real phone call using lifelike text-to-speech.",
-      },
-      {
-        title: "Replies, recorded",
-        description:
-          "Responses are recorded, transcribed, and saved to a searchable history.",
-      },
-      {
-        title: "Speaks their language",
-        description:
-          "Each person hears the message in the language they're most comfortable with.",
-      },
-      {
-        title: "Live call status",
-        description:
-          "Watch calls progress in real time, streamed back to the app.",
-      },
-    ],
-    technologies: [
-      "Python",
-      "FastAPI",
-      "Pydantic AI",
-      "OpenAI",
-      "ElevenLabs",
-      "Twilio",
-      "Flutter",
-      "PostgreSQL",
-    ],
-    github: "https://github.com/abhiraj070/Aaraam-CallingAgent",
-    live: null,
-    statusNote:
-      "Fully implemented across an AI backend, a Flutter mobile app, and a web prototype. Runs against live Twilio, OpenAI, and ElevenLabs services, and is not yet publicly deployed.",
-    roadmap: [
-      "Public beta of the mobile app",
-      "Scheduled and recurring calls",
-      "Two-way conversational follow-ups",
-    ],
-    screenshots: [],
-  },
-  {
-    id: 7,
-    slug: "alaya",
-    featured: true,
-    name: "Alaya",
-    tagline: "Personal knowledge & conversational retrieval API with hybrid search.",
-    shortDescription:
-      "An asynchronous memory engine that normalizes facts, creates pgvector embeddings, and answers queries via semantic, SQL, or hybrid retrieval.",
-    category: "AI",
-    status: "Building",
-    accentColor: "#818cf8",
-    tags: [
-      "rag",
-      "pgvector",
-      "fastapi",
-      "embeddings",
-      "hybrid-search",
-      "redis",
-      "websockets",
-    ],
-    year: 2026,
-    relatedProducts: ["noteai", "aaraam-calling-agent"],
-    problem:
-      "Personal knowledge—receipts, preferences, purchases, and facts—is scattered across disconnected notes and chats. Keyword search misses conceptual meaning, while basic semantic search hallucinates when asked deterministic questions like 'How much did I spend on my laptop last month?' or misses structured constraints.",
-    solution:
-      "Alaya provides an asynchronous personal knowledge memory backend. It takes free-form text or image uploads, normalizes compound statements into atomic facts with dynamic JSONB metadata and 1536-dimensional pgvector embeddings via ARQ workers, and streams answers back using intelligent query classification: choosing between vector similarity, deterministic PostgreSQL queries, or a hybrid blend of both.",
-    features: [
-      {
-        title: "Compound fact normalization",
-        description:
-          "Normalizes multi-part sentences into atomic, standalone facts and extracts dynamic structured metadata (dates, currency, entities) stored as JSONB.",
-      },
-      {
-        title: "Hybrid multi-strategy retrieval",
-        description:
-          "Intelligently classifies incoming questions to route between semantic nearest-neighbor search, deterministic PostgreSQL queries, or hybrid candidate filtering.",
-      },
-      {
-        title: "Asynchronous background workers",
-        description:
-          "Redis and ARQ workers handle vector embeddings and heavy document parsing in the background without blocking client requests.",
-      },
-      {
-        title: "Multimodal vision extraction",
-        description:
-          "Ingests images and receipts via OpenAI vision models, automatically transcribing and extracting knowledge into structured storage.",
-      },
-      {
-        title: "Real-time WebSocket notifications",
-        description:
-          "Subscribes to Redis pub/sub to push live processing status and job completion notifications directly to authenticated client sockets.",
-      },
-      {
-        title: "Per-user vector isolation",
-        description:
-          "All conversational context, chats, knowledge records, and 1536-dimensional pgvector embeddings are strictly scoped to the authenticated user.",
-      },
-    ],
-    technologies: [
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "pgvector",
-      "Redis",
-      "ARQ",
-      "SQLAlchemy",
-      "OpenAI",
-      "WebSockets",
-      "Cloudinary",
-      "Alembic",
-      "Pydantic",
-    ],
-    github: "https://github.com/abhiraj070/alaya",
-    live: null,
-    statusNote:
-      "Under active development. Text and image ingestion, ARQ background processing, pgvector embeddings, and WebSocket notifications are implemented. Multi-format document extractors (PDF, DOCX, XLSX, PPTX) and route registrations are in progress.",
-    roadmap: [
-      "Multi-format document extraction API (PDF, DOCX, XLSX, PPTX)",
-      "Assistant context persistence and full chat session memory",
-      "Document ingestion chunking and deduplication",
-      "Docker Compose containerized local development environment",
-      "Web client interface & playground deployment",
     ],
     screenshots: [],
   },

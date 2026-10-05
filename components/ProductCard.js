@@ -24,7 +24,7 @@ export default function ProductCard({ product, index = 0, className = "" }) {
         animationDelay: `${Math.min(index, 8) * 55}ms`,
       }}
       className={
-        "group relative flex animate-fade-up flex-col rounded-2xl border border-hairline bg-surface p-3 shadow-raised " +
+        "group relative flex h-full animate-fade-up flex-col rounded-2xl border border-hairline bg-surface p-3.5 shadow-raised " +
         "transition-all duration-300 ease-premium hover:-translate-y-1 hover:border-hairline-strong " +
         "hover:bg-surface-hover hover:shadow-[0_24px_50px_-20px_var(--glow)] " +
         "active:translate-y-0 active:scale-[0.99] active:duration-100 " +
@@ -39,7 +39,7 @@ export default function ProductCard({ product, index = 0, className = "" }) {
       >
         <ProductArtwork product={product} index={index} />
 
-        <div className="flex flex-1 flex-col px-1.5 pb-1 pt-4">
+        <div className="flex flex-1 flex-col px-1 pb-1 pt-4">
           <div className="flex items-center gap-2.5">
             <span
               className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-transform duration-300 ease-premium group-hover:scale-105"
@@ -55,18 +55,18 @@ export default function ProductCard({ product, index = 0, className = "" }) {
               {product.name}
             </h3>
             <span
-              className="text-[11px] font-medium uppercase tracking-wide"
+              className="shrink-0 text-[11px] font-medium uppercase tracking-wide"
               style={{ color, opacity: 0.8 }}
             >
               {product.category}
             </span>
           </div>
 
-          <p className="mt-2.5 text-sm leading-relaxed text-fg-muted">
+          <p className="mt-2.5 line-clamp-2 min-h-[40px] text-sm leading-relaxed text-fg-muted">
             {product.shortDescription}
           </p>
 
-          <div className="mt-4 flex items-center justify-between gap-3 pt-1">
+          <div className="mt-auto flex items-center justify-between gap-3 pt-3 border-t border-hairline/40">
             <StatusBadge status={product.status} />
             <span className="inline-flex items-center gap-1 rounded-lg border border-hairline px-2.5 py-1 text-sm font-medium text-fg-muted transition-all duration-300 ease-premium group-hover:border-accent/40 group-hover:bg-accent-soft group-hover:text-accent">
               Open

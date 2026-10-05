@@ -55,8 +55,16 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-theme="dark"
+      suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-screen font-sans text-fg antialiased">
         <a
           href="#main"

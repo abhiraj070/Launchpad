@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   GraduationCap,
   MapPin,
@@ -26,32 +27,32 @@ const INFO_CARDS = [
   {
     id: "education",
     eyebrow: "Education",
-    title: "IIT Madras",
-    subtitle: "BS (Bachelor of Science)",
-    detail: "Data Science and Applications / Core computing foundation.",
+    title: "Maharaja Surajmal Institute of Technology",
+    subtitle: "IT Branch · 3rd Year",
+    detail: "Information Technology branch / Currently in 3rd year.",
     icon: GraduationCap,
     accentColor: "#a78bfa", // subtle pastel violet (experiment token)
-    badge: "Undergrad",
+    badge: "3rd Year",
   },
   {
     id: "location",
     eyebrow: "Location",
-    title: "India",
+    title: "New Delhi, India",
     subtitle: "IST (UTC+5:30)",
-    detail: "Available for remote work & global engineering teams.",
+    detail: "Based in New Delhi, available for remote and hybrid opportunities.",
     icon: MapPin,
     accentColor: "#34d399", // subtle pastel emerald (live token)
-    badge: "Remote",
+    badge: "New Delhi",
   },
   {
     id: "experience",
     eyebrow: "Experience",
     title: "Krishify",
-    subtitle: "Software Engineering Intern",
+    subtitle: "Ex-Intern · Software Engineering",
     detail: "Full-stack feature engineering & backend services (ended Sep 2026).",
     icon: Briefcase,
     accentColor: "#fbbf24", // subtle pastel amber (building token)
-    badge: "Internship",
+    badge: "Ex-Intern",
   },
   {
     id: "building",
@@ -83,10 +84,57 @@ export default function AboutSection() {
           </h2>
         </div>
 
-        {/* Main Content Layout: Two-column on desktop, stacked on mobile */}
+        {/* Narrative & Photo Layout: Photo placed directly in front of (to the left of) the bio copy */}
         <div className="mt-10 grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12">
-          {/* Left Column: Narrative Introduction & Technical Interests */}
-          <div className="flex flex-col lg:col-span-7">
+          {/* Left Column: Photo Card (In front of the biographical narrative) */}
+          <div className="w-full lg:col-span-5 xl:col-span-4">
+            <div className="group relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
+              {/* Subtle ambient warm glow behind the photo card */}
+              <div
+                aria-hidden="true"
+                className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-accent/20 via-transparent to-surface-2 opacity-50 blur-xl transition-opacity duration-500 group-hover:opacity-80"
+              />
+
+              {/* Outer Framed Photo Card */}
+              <div className="relative overflow-hidden rounded-2xl border border-hairline bg-surface-2 p-2.5 shadow-raised transition-all duration-300 ease-premium group-hover:border-hairline-strong group-hover:shadow-elevated">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-surface">
+                  <Image
+                    src="/abhiraj.jpg"
+                    alt="Abhiraj Sharma - Full-Stack AI Developer"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 380px, 340px"
+                    className="object-cover object-center transition-transform duration-500 ease-premium group-hover:scale-[1.03]"
+                  />
+
+                  {/* Gentle bottom shadow gradient for depth & text legibility */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-gradient-to-t from-canvas/85 via-canvas/20 to-transparent"
+                  />
+
+                  {/* Floating Glassmorphism Identity Badge */}
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-xl border border-hairline/80 bg-surface/90 px-3 py-2 backdrop-blur-md shadow-soft">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="relative flex h-2 w-2 shrink-0">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-live opacity-75" />
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-live" />
+                      </span>
+                      <span className="truncate font-mono text-xs font-medium text-fg">
+                        Abhiraj Sharma
+                      </span>
+                    </div>
+                    <span className="shrink-0 rounded-md border border-hairline bg-surface-2 px-1.5 py-0.5 font-mono text-[10px] text-fg-muted uppercase tracking-wider">
+                      Full-Stack AI
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Narrative Introduction ("Where everything is written about me") & Tech Stack */}
+          <div className="flex flex-col lg:col-span-7 xl:col-span-8">
             {/* Introduction Copy */}
             <div className="space-y-4 text-base leading-relaxed text-fg-muted sm:text-[17px]">
               <p>
@@ -106,7 +154,7 @@ export default function AboutSection() {
               </p>
 
               <p>
-                Previously, I worked as a Software Engineering Intern at{" "}
+                Previously, I worked as an Ex-Intern (Software Engineering) at{" "}
                 <strong className="font-semibold text-fg">Krishify</strong> (completed September
                 2026), where I developed and shipped production full-stack features with an
                 emphasis on performance, scalability, and code reliability.
@@ -131,14 +179,15 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* Desktop CTAs: Resume & GitHub Proof of Work */}
-            <div className="mt-9 hidden flex-wrap items-center gap-3.5 lg:flex">
+            {/* CTAs: Resume & GitHub Proof of Work */}
+            <div className="mt-9 flex flex-wrap items-center gap-3.5">
               <Button
                 href="https://drive.google.com/file/d/1S2w0pLS4hj7IFQkux1sCIIhY3eG3bIa3/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 size="lg"
                 variant="primary"
+                className="w-full sm:w-auto"
               >
                 <span>View Resume</span>
                 <ArrowUpRight size={16} />
@@ -150,98 +199,72 @@ export default function AboutSection() {
                 rel="noopener noreferrer"
                 size="lg"
                 variant="secondary"
+                className="w-full sm:w-auto"
               >
                 <Github size={16} />
                 <span>GitHub · Proof of Work</span>
               </Button>
             </div>
           </div>
+        </div>
 
-          {/* Right Column: 4 Information Cards */}
-          <div className="w-full lg:col-span-5">
-            <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              {INFO_CARDS.map((card) => {
-                const Icon = card.icon;
-                return (
-                  <div
-                    key={card.id}
-                    className="group relative flex flex-col justify-between rounded-2xl border border-hairline bg-surface p-4 shadow-soft transition-all duration-200 ease-premium hover:-translate-y-0.5 hover:border-hairline-strong hover:bg-surface-2 sm:p-5"
-                  >
-                    <div>
-                      {/* Card Header: Icon + Badge */}
-                      <div className="flex items-center justify-between gap-2">
-                        <span
-                          className="flex h-9 w-9 items-center justify-center rounded-xl border transition-transform duration-200 ease-premium group-hover:scale-105"
-                          style={{
-                            color: card.accentColor,
-                            backgroundColor: `${card.accentColor}14`,
-                            borderColor: `${card.accentColor}2e`,
-                          }}
-                        >
-                          <Icon size={17} />
-                        </span>
+        {/* 4 Information Credential Cards: Education, Location, Experience, Currently Building */}
+        <div className="mt-12 border-t border-hairline pt-10">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {INFO_CARDS.map((card) => {
+              const Icon = card.icon;
+              return (
+                <div
+                  key={card.id}
+                  className="group relative flex flex-col justify-between rounded-2xl border border-hairline bg-surface p-4 shadow-soft transition-all duration-200 ease-premium hover:-translate-y-0.5 hover:border-hairline-strong hover:bg-surface-2 sm:p-5"
+                >
+                  <div>
+                    {/* Card Header: Icon + Badge */}
+                    <div className="flex items-center justify-between gap-2">
+                      <span
+                        className="flex h-9 w-9 items-center justify-center rounded-xl border transition-transform duration-200 ease-premium group-hover:scale-105"
+                        style={{
+                          color: card.accentColor,
+                          backgroundColor: `${card.accentColor}14`,
+                          borderColor: `${card.accentColor}2e`,
+                        }}
+                      >
+                        <Icon size={17} />
+                      </span>
 
-                        <span
-                          className="rounded-full border px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider"
-                          style={{
-                            color: card.accentColor,
-                            borderColor: `${card.accentColor}33`,
-                            backgroundColor: `${card.accentColor}0d`,
-                          }}
-                        >
-                          {card.badge}
-                        </span>
-                      </div>
-
-                      {/* Eyebrow */}
-                      <p className="mt-3.5 font-mono text-[10.5px] uppercase tracking-wider text-fg-faint">
-                        {card.eyebrow}
-                      </p>
-
-                      {/* Main Title & Subtitle */}
-                      <h4 className="mt-1 text-base font-semibold text-fg">
-                        {card.title}
-                      </h4>
-                      <p className="mt-0.5 font-mono text-xs text-fg-muted">
-                        {card.subtitle}
-                      </p>
+                      <span
+                        className="rounded-full border px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider"
+                        style={{
+                          color: card.accentColor,
+                          borderColor: `${card.accentColor}33`,
+                          backgroundColor: `${card.accentColor}0d`,
+                        }}
+                      >
+                        {card.badge}
+                      </span>
                     </div>
 
-                    {/* Detail Note */}
-                    <p className="mt-3 text-xs leading-relaxed text-fg-faint">
-                      {card.detail}
+                    {/* Eyebrow */}
+                    <p className="mt-3.5 font-mono text-[10.5px] uppercase tracking-wider text-fg-faint">
+                      {card.eyebrow}
+                    </p>
+
+                    {/* Main Title & Subtitle */}
+                    <h4 className="mt-1 text-base font-semibold text-fg">
+                      {card.title}
+                    </h4>
+                    <p className="mt-0.5 font-mono text-xs text-fg-muted">
+                      {card.subtitle}
                     </p>
                   </div>
-                );
-              })}
-            </div>
 
-            {/* Mobile CTAs: Appears directly after Currently Building card on mobile */}
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center lg:hidden">
-              <Button
-                href="https://drive.google.com/file/d/1S2w0pLS4hj7IFQkux1sCIIhY3eG3bIa3/view?usp=drive_link"
-                target="_blank"
-                rel="noopener noreferrer"
-                size="lg"
-                variant="primary"
-                className="w-full sm:w-auto"
-              >
-                <span>View Resume</span>
-                <ArrowUpRight size={16} />
-              </Button>
-
-              <Button
-                href="https://github.com/abhiraj070"
-                target="_blank"
-                rel="noopener noreferrer"
-                size="lg"
-                variant="secondary"
-                className="w-full sm:w-auto"
-              >
-                <Github size={16} />
-                <span>GitHub · Proof of Work</span>
-              </Button>
-            </div>
+                  {/* Detail Note */}
+                  <p className="mt-3 text-xs leading-relaxed text-fg-faint">
+                    {card.detail}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </Container>
