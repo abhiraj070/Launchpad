@@ -184,7 +184,7 @@ export default function AboutSection() {
             {/* CTAs: Resume & GitHub Proof of Work */}
             <div className="mt-9 flex flex-wrap items-center gap-3.5">
               <Button
-                href="https://drive.google.com/file/d/1S2w0pLS4hj7IFQkux1sCIIhY3eG3bIa3/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1gkT2vympwsqy1gNadgKyxqU0VHjl5qNu/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 size="lg"
